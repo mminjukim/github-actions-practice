@@ -25,10 +25,12 @@ jobs:
 
       - name: Github Actions 변수 사용해보기
         run: |
-          echo $GITHUB_SHA # 커밋의 id
+          echo $GITHUB_SHA 
           echo $GITHUB_REPOSITORY
+        # 각각 커밋ID, 레포지토리명 출력
 
       - name: Github Actions Secret 변수 사용해보기
+        # 레포 settings > secrets and variables > actions에서 설정
         run: |
           echo ${{ secrets.MY_NAME }}
           echo ${{ secrets.MY_HOBBY }}
