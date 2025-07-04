@@ -1,13 +1,34 @@
+# -- 하나의 workflow의 이름 -- #
 name: Github Actions 실행시켜보기
 
+# -- Event -- #
+# 어느 시점에 workflow 실행시킬 것인가? -> main 브랜치에 push됐을 때
 on:
   push:
     branches:
       - main
 
+# 하나의 workflow는 1개 이상의 job으로 구성됨, 여러 job은 병렬적으로 수행
 jobs:
-  My-Deploy-Job:
-    runs-on: ubuntu-latest
-    steps:
+  My-Deploy-Job: # 한 job의 id
+    runs-on: ubuntu-latest # job을 실행하는 운영체제 선택
+
+    # job은 여러 step으로 구성됨
+    steps: # 특정 작업을 수행하는 가장 작은 단위
       - name: Hello World 찍기
-        run: echo "Hello World"
+        run: echo "Hello World" # 리눅스 명령어
+
+      - name: 여러 명령어 문장 작성하기
+        run: | # 여러 문장 작성 위해 사용 ( | )
+          echo "Good"
+          echo "Morning"
+
+      - name: Github Actions 변수 사용해보기
+        run: |
+          echo $GITHUB_SHA # 커밋의 id
+          echo $GITHUB_REPOSITORY
+
+      - name: Github Actions Secret 변수 사용해보기
+        run: |
+          echo ${{ secrets.MY_NAME }}
+          echo ${{ secrets.MY_HOBBY }}
